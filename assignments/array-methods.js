@@ -66,7 +66,7 @@ console.log(fullNames);
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runners' first names in uppercase because the director BECAME DRUNK WITH POWER. Populate an array called `firstNamesAllCaps`. This array will contain just strings.
 let firstNamesAllCaps = [];
-runners.forEach(runnersArr => {
+runners.map(runnersArr => {
   firstNamesAllCaps.push(`${runnersArr.first_name.toUpperCase()}`)
 });
 console.log(firstNamesAllCaps);
@@ -103,6 +103,64 @@ console.log(ticketPriceTotal);
 
 // Problem 1
 
+//Compute all data of all the ruuner using forEach
+let runnerDetails = [];
+runners.forEach(runnersArr => {
+  runnerDetails.push(`Full Name: ${runnersArr.first_name} ${runnersArr.last_name}.
+  Email: ${runnersArr.email}.
+  Shirt Size: ${runnersArr.shirt_size}.
+  Company Name: ${runnersArr.company_name}.
+  Donations: ${runnersArr.donation}`)
+});
+console.log(runnerDetails);
+
+
 // Problem 2
 
+//Compute the percentage donated by each runner using Map
+let pecentageDonatedByRunner = [];
+function pecentageDonated(runnersArr) {
+  donationInPercentage = (((runnersArr.donation / ticketPriceTotal) * 100).toFixed(2))
+  pecentageDonatedByRunner.push(`${runnersArr.first_name} ${runnersArr.last_name} donated ${donationInPercentage}% of the total donations recieved`)
+  return pecentageDonatedByRunner;
+}
+runners.map(pecentageDonated)
+console.log(pecentageDonatedByRunner)
+
+
 // Problem 3
+
+//Compute all runners first name starting with "S" using Filter
+let runnersNames = [];
+function filterRunnersNames(runnersArr) {
+  if(runnersArr.first_name[0] === "S") {
+    runnersNames.push(`${runnersArr.first_name} ${runnersArr.last_name}`);
+  }
+  return runnersNames
+}
+runners.filter(filterRunnersNames)
+console.log(runnersNames);
+
+
+//problem 4
+
+//compute total average donation for all runners using Reduce
+let totalAverageDonations = 0;
+function totalDonations2(initialDonation, currentDonation) {
+  totalAverageDonations = initialDonation + currentDonation.donation;
+  return totalAverageDonations 
+}
+// console.log(runners.reduce(totalDonations, 0))
+runners.reduce(totalDonations2, 0)
+console.log(totalAverageDonations/(runners.length));
+
+
+// const euros = [29.76, 41.85, 46.5];
+// const average = euros.reduce((total, amount, index, array) => {
+//   total += amount;
+//   if( index === array.length-1) { 
+//     return total/array.length;
+//   }else { 
+//     return total;
+//   }
+// });
